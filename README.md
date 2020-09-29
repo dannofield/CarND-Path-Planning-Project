@@ -187,6 +187,7 @@ The jerk corresponds to variations in acceleration. The idea is to minimize the 
 <p align="center">
   <img src="./IMG_RESULTS/JMT5.png" />
 </p>
+
 ```Cpp
 #include <cmath>
 #include <iostream>
