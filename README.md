@@ -15,15 +15,49 @@
   <img src="./IMG_RESULTS/playfuldesertedblackrussianterrier-size-restricted.gif" />
 </p>
 
-## Lanes
-<div style="text-align:center">![alt text][image2]</div>
+### *************************************************************************/
+## SENSOR FUSION
+### *************************************************************************/
 
-Using Fernet coordinates to check if there is a car in front of us
+The sensor function layer gives us the positions and velocitiy of the car that are near us.
+```Cpp
+// Sensor Fusion Data is a list of all other cars on the same side 
+//   of the road.
+// The data format for each car is: [ id, x, y, vx, vy, s, d]
+auto sensor_fusion = j[1]["sensor_fusion"];
+```
+We can estract the data from this array like:
 
 ```Cpp
-/*************************************************************************
-* SENSOR FUSION
-*************************************************************************/
+/*The data format for each car is: [ id, x, y, vx, vy, s, d]
+    id is a unique identifier for that car 
+    x, y values are in global map coordinates
+    vx, vy values are the velocity components (reference to the global map)
+    s and d are the Frenet coordinates for that car.
+*/
+for(int i = 0; i < sensor_fusion.size(); i++)
+{
+
+  float check_other_car_d = sensor_fusion[i][6];
+  double check_other_car_vx = sensor_fusion[i][3];
+  double check_other_car_vy = sensor_fusion[i][4];
+  //magnitud of velocity on x and y
+  double check_other_car_speed = sqrt(check_other_car_vx * check_other_car_vx + check_other_car_vy * check_other_car_vy);
+  double check_other_car_s = sensor_fusion[i][5];
+  :
+  :
+}
+```
+
+Using Fernet coordinates (d,s) we can know what is happening on our lane and also on the lanes adjacents to us.
+
+The d vector has a magnitude of 1 and points perpendicular to the road in the direction of the right-hand side of the road. The d vector can be used to calculate lane positions. For example, if you want to be in the left lane at some waypoint just add the waypoint's (x,y) coordinates with the d vector multiplied by 2. Since the lane is 4 m wide, the middle of the left lane (the lane closest to the double-yellow dividing line) is 2 m from the waypoint. 
+If you would like to be in the middle lane, add the waypoint's coordinates to the d vector multiplied by 6 = (2+4), since the center of the middle lane is 4 m from the center of the left lane, which is itself 2 m from the double-yellow dividing line and the waypoints.
+
+
+![alt text][image2]
+
+```Cpp
 
 /*Middle point of car's lane is 'lane' + 2 and 'lane' size is 4.*/
 if(check_other_car_d < (2+4*lane+2) && check_other_car_d > (2+4*lane-2))
