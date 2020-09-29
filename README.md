@@ -6,7 +6,9 @@
 [image2]: ./IMG_RESULTS/Lanes.png "Lanes"
 [image3]: ./IMG_RESULTS/LaneKeep.png "Lane Keep"
 [image4]: ./IMG_RESULTS/LanesChange.png "Lanes Change"
-
+[image5]: ./IMG_RESULTS/BehaviorLayers.png "Behavior Layers"
+[image6]: ./IMG_RESULTS/BehaviorPlanning.png "Behavior Planning"
+[image7]: ./IMG_RESULTS/Lanes2.png "Lanes Change"
 
 # CarND-Path-Planning-Project
 ### Self-Driving Car Engineer Nanodegree Program
@@ -15,9 +17,40 @@
   <img src="./IMG_RESULTS/playfuldesertedblackrussianterrier-size-restricted.gif" />
 </p>
 
+# Behavior Planning
+
+The Behavior Planning goal is to safely navigate around a virtual highway with other traffic that is driving around speed limit. The car should try to go as close as possible to the speed limit, which means passing slower traffic when possible, even though other cars will try to change lanes too. The car should avoid hitting other cars at all cost as well as driving inside of the marked road lanes at all times, unless going from one lane to another. Also the car should not experience total acceleration over 10 m/s^2 and jerk that is greater than 10 m/s^3.
+
+This layer is provided with the car's localization and sensor fusion data, there is also a sparse map list of waypoints around the highway. 
+
+![Behavior Planning][image6]
+
+Using this information, is the responsability of The Path Planning module come up with:
+* predictions: will predict the trajectories of the surrounding detected objects
+* behavior planner: will define a set of candidate high-level targets for the vehicle to follow (lane changes, slow down ...)
+* trajectories generation: for every possible high level target, a precise path to follow will be computed
+* trajectories cost ranking: for each trajectory, a cost will be derived (depending on feasibility, safety, legality, comfort, and efficiency) and the trajectory with the lowest cost will be chosen
+
+![Behavior Layers][image5]
+
+### *************************************************************************/
+## Waypoint Data
+
+Each waypoint has an (x,y) global map position, and a Frenet s value and Frenet d unit normal vector. 
+The s value is the distance along the direction of the road. 
+The d vector has a magnitude of 1 and points perpendicular to the road in the direction of the right-hand side of the road. 
+
+Using Fernet coordinates (d,s) we can know the position of our car in the road.
+
+![Car Position][image2]
+
+if you want to be in the left lane at some waypoint just add the waypoint's (x,y) coordinates with the d vector multiplied by 2. Since the lane is 4 m wide, the middle of the left lane (the lane closest to the double-yellow dividing line) is 2 m from the waypoint. 
+If you would like to be in the middle lane, add the waypoint's coordinates to the d vector multiplied by 6 = (2+4), since the center of the middle lane is 4 m from the center of the left lane, which is itself 2 m from the double-yellow dividing line and the waypoints.
+
+
 ### *************************************************************************/
 ## SENSOR FUSION
-### *************************************************************************/
+
 
 The sensor function layer gives us the positions and velocitiy of the car that are near us.
 ```Cpp
@@ -49,7 +82,7 @@ for(int i = 0; i < sensor_fusion.size(); i++)
 }
 ```
 
-Using Fernet coordinates (d,s) we can know what is happening on our lane and also on the lanes adjacents to us.
+ what is happening on our lane and also on the lanes adjacents to us.
 
 The d vector has a magnitude of 1 and points perpendicular to the road in the direction of the right-hand side of the road. The d vector can be used to calculate lane positions. For example, if you want to be in the left lane at some waypoint just add the waypoint's (x,y) coordinates with the d vector multiplied by 2. Since the lane is 4 m wide, the middle of the left lane (the lane closest to the double-yellow dividing line) is 2 m from the waypoint. 
 If you would like to be in the middle lane, add the waypoint's coordinates to the d vector multiplied by 6 = (2+4), since the center of the middle lane is 4 m from the center of the left lane, which is itself 2 m from the double-yellow dividing line and the waypoints.
