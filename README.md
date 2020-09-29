@@ -155,18 +155,89 @@ if((lane < 2)
 
 ```
 
-To summerize, thanks to sensor fusion we know our location all time, and the position of other cars in front and at our sides. This allow us to break, change lanes or just wait until a lane gets available.
+To summerize, thanks to sensor fusion we know our location all the time, and the position of other cars in front and at our sides. This allows us to break, change lanes or just wait until a lane gets available.
 
 ![alt text][image3]
 
 ### *************************************************************************/
-## Interpolating Points
+## Trajectories generation
+
+### Interpolating Points
+
+To generate trajectories by using (x, y) coordinates we take Frenet (s and d) coordinates only to define the final target eg a s of 30 meters away with a d corresponding to the target lane. This target point is converted into (x, y) coordinates and a trajectory going from the start point up to the end point (in cartesian coordinates) is computed by using splines. 
 
 We need to estimate the location of points between the known waypoints, so we will need to "interpolate" the position of those points. 
-We could use to functions for fitting polynomials to waypoints. There are also other methods we can use. For example, Bezier curve fitting with control points, or spline fitting, which guarantees that the generated function passes through every point. 
+We could use to functions for fitting polynomials to waypoints. There are also other methods we can use. For example, Bezier curve fitting with control points, or spline fitting, which guarantees that the generated function passes through every point.
+
+Using splines ensures that continuity is preserved for the generated trajectory and its 1st and 2nd derivatives: so we guarantee continuity in terms of trajectory, speed and acceleration including end points and previous trajectory. The advantage of this method is that it works pretty well even if the (s, d) estimates are not that accurate as it mainly works in (x, y) coordinates and most of the maths is handled via the C++ spline library which is very simple to use. In terms of drawbacks, it does not guarantee Minimum Jerk which is related to maximum comfort for the user.
 
 Here is a great and easy to setup and use [spline tool for C++](https://kluge.in-chemnitz.de/opensource/spline/), contained in just a single header file.
 Once we have a polynomial function, we can use it to interpolate the location of a new point.
+
+### Jerk Minimizing Trajectory
+
+The jerk corresponds to variations in acceleration. The idea is to minimize the sum of these 3rd derivatives from t_start to t_end. [Jerk Minimizing Trajectory](http://courses.shadmehrlab.org/Shortcourse/minimumjerk.pdf) has to be 2 quintic polynomials:
+* for the longitudinal part: s(t) is a polynom of order 5
+* for the lateral part: d(t) is a polynom of order 5
+
+<p align="center">
+  <img src="./IMG_RESULTS/JMT4.png" />
+</p>
+
+<p align="center">
+  <img src="./IMG_RESULTS/JMT5.png" />
+</p>
+```Cpp
+#include <cmath>
+#include <iostream>
+#include <vector>
+
+using std::vector;
+using Eigen::MatrixXd;
+using Eigen::VectorXd;
+
+vector<double> JMT(vector<double> &start, vector<double> &end, double T) {
+  /**
+   * Calculate the Jerk Minimizing Trajectory that connects the initial state
+   * to the final state in time T.
+   *
+   * @param start - the vehicles start location given as a length three array
+   *   corresponding to initial values of [s, s_dot, s_double_dot]
+   * @param end - the desired end state for vehicle. Like "start" this is a
+   *   length three array.
+   * @param T - The duration, in seconds, over which this maneuver should occur.
+   *
+   * @output an array of length 6, each value corresponding to a coefficent in 
+   *   the polynomial:
+   *   s(t) = a_0 + a_1 * t + a_2 * t**2 + a_3 * t**3 + a_4 * t**4 + a_5 * t**5
+   */
+     MatrixXd A = MatrixXd(3, 3);
+  A << T*T*T, T*T*T*T, T*T*T*T*T,
+       3*T*T, 4*T*T*T,5*T*T*T*T,
+       6*T, 12*T*T, 20*T*T*T;
+    
+  MatrixXd B = MatrixXd(3,1);     
+  B << end[0]-(start[0]+start[1]*T+.5*start[2]*T*T),
+       end[1]-(start[1]+start[2]*T),
+       end[2]-start[2];
+  
+  MatrixXd C = A.inverse()*B;
+  
+  vector <double> result = {start[0], start[1], .5*start[2]};
+
+  for(int i = 0; i < C.size(); ++i) {
+    result.push_back(C.data()[i]);
+  }
+
+  return result;
+}
+```
+
+Once the s(t) and d(t) have been found for the trajectory, we convert back to (x, y) coordinates using the accurate getXYspline function: we want to check speeed and acceleration in cartesian coordinates.
+Also we have predictions from sensor fusion informations that are in (x, y) coordinates: so ultimately we check collision avoidance and safety distances in (x, y) coordinates.
+
+This approach has its disvantages, specially during a cold start, we can end up with useless wheels movements. This is a subject for further improvement so this method was not used. 
+
 
 
 ### Goals
