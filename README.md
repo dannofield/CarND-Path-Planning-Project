@@ -104,7 +104,7 @@ if(check_other_car_d < (2+4*lane+2) && check_other_car_d > (2+4*lane-2))
 }
 ```
 
-We are also checking all the time for cars on other. So we allways know if the left lane or the right lane are available at all time. 
+We are also checking all the time for cars on other. So we always know if the left lane or the right lane are available at all time. 
 
 We check for cars 10 mts ahead of us and 30 mts back to consider the next lane available or not in case we want to change our lane
 
@@ -119,7 +119,7 @@ Each lane is 4 m wide and our car should only ever be in one of the 3 lanes on t
 Lane 0: High speed - Lane 1: meddle - Lane 2: Low speed
 */ 
 ```
-#### Check left lane allways
+#### Check left lane always
 ```Cpp
 if((lane > 0) 
       /*is the other car in between of the next left lane left boundary*/
@@ -136,7 +136,7 @@ if((lane > 0)
 
 }
 ```
-#### Check right lane allways
+#### Check right lane always
 ```Cpp
 if((lane < 2) 
       /*is the other car in between of the next right lane left boundary*/
