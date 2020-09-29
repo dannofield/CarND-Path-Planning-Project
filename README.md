@@ -11,7 +11,10 @@
 # CarND-Path-Planning-Project
 Self-Driving Car Engineer Nanodegree Program
 
-<img align="center" src="./IMG_RESULTS/playfuldesertedblackrussianterrier-size-restricted.gif" alt="Self Driving Car">
+<p align="center">
+  <img src="./IMG_RESULTS/playfuldesertedblackrussianterrier-size-restricted.gif" />
+</p>
+
 
 <div style="text-align:center">![alt text][image1]</div>
 
