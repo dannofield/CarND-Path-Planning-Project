@@ -117,13 +117,15 @@ bool right_lane_is_empty = true;
 /*The d vector has a magnitude of 1 and points perpendicular to the road in the direction of the right-hand side of the road.
 Each lane is 4 m wide and our car should only ever be in one of the 3 lanes on the right-hand side.
 Lane 0: High speed - Lane 1: meddle - Lane 2: Low speed
-*/  
-/*Check left lane allways*/
+*/ 
+```
+#### Check left lane allways
+```Cpp
 if((lane > 0) 
       /*is the other car in between of the next left lane left boundary*/
-      && check_other_car_d > (/*left lane = */(lane - 1)*/*lane width = */4)
+      && check_other_car_d > (/*left lane = */(lane - 1)* /*lane width = */ 4)
       /*...and the next left lane right boundary*/
-      && check_other_car_d < (/*left lane = */(lane - 1)*/*lane width = */4) + 4)
+      && check_other_car_d < (/*left lane = */(lane - 1)* /*lane width = */ 4) + 4)
 {
   //check s position in between +10mts and -30mts of our car
   if((check_other_car_s < (car_s + 10/*mts*/)) && (check_other_car_s > (car_s - 30/*mts*/)))
@@ -133,12 +135,14 @@ if((lane > 0)
   }
 
 }
-/*Check right lane allways*/
+```
+#### Check right lane allways
+```Cpp
 if((lane < 2) 
       /*is the other car in between of the next right lane left boundary*/
-      && check_other_car_d > (/*right lane = */(lane + 1)*/*lane width = */4)
+      && check_other_car_d > (/*right lane = */(lane + 1)* /*lane width = */ 4)
       /*...and the next right lane right boundary*/
-      && check_other_car_d < (/*right lane = */(lane + 1)*/*lane width = */4) + 4)
+      && check_other_car_d < (/*right lane = */(lane + 1)* /*lane width = */ 4) + 4)
 {
   //check s position in between +10mts and -30mts of our car
   if((check_other_car_s < (car_s + 10/*mts*/)) && (check_other_car_s > (car_s - 30/*mts*/)))
