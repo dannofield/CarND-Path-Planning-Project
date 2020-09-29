@@ -239,9 +239,45 @@ Also we have predictions from sensor fusion informations that are in (x, y) coor
 
 This approach has its disvantages, specially during a cold start, we can end up with useless wheels movements. This is a subject for further improvement so this method was not used. 
 
+## References
+
+[Intention-Net: Integrating Planning and Deep Learning for Goal-Directed Autonomous Navigation](https://arxiv.org/abs/1710.05627)
+
+[Learning to Navigate in Cities Without a Map](https://arxiv.org/abs/1804.00168)
+
+[A Look at Motion Planning for Autonomous Vehicles at an Intersection](https://arxiv.org/abs/1806.07834)
+
+[DeepTraffic: Crowdsourced Hyperparameter Tuning of Deep Reinforcement Learning Systems for Multi-Agent Dense Traffic Navigation](https://arxiv.org/abs/1801.02805)
+
+[Intel proposes a mathematical formula for self-driving car safety](https://www.engadget.com/2017-10-17-intel-mobileye-autonomous-vehicle-safety.html)
+
+[On a Formal Model of Safe and Scalable Self-driving Cars](https://arxiv.org/pdf/1708.06374.pdf)
+
+[A minimum-jerk Trajectory](http://courses.shadmehrlab.org/Shortcourse/minimumjerk.pdf) [MPLAB](http://mplab.ucsd.edu/tutorials/minimumJerk.pdf)
+
+[Optimal Trajectory Generation for Dynamic Street Scenarios in a Frenet Frame](https://pdfs.semanticscholar.org/0e4c/282471fda509e8ec3edd555e32759fedf4d7.pdf)
+
+[Sampling Based Motion Planning for Heavy Duty Autonomous Vehicles](http://liu.diva-portal.org/smash/get/diva2:1049189/FULLTEXT01.pdf)
+
+[Towards Fully Autonomous Driving: Systems and Algorithms](https://www.cs.cmu.edu/~zkolter/pubs/levinson-iv2011.pdf)
+
+[Path Planning for Highly Automated Vehicles](http://publications.lib.chalmers.se/records/fulltext/182538/182538.pdf)
+
+[Vehicle Trajectory Prediction based on Motion Model and Maneuver Recognition](https://hal.inria.fr/hal-00881100/PDF/IROS13_PIN_161867_.pdf)
+
+[Dynamic Speed Adaptation for Path Tracking Based on Curvature Information and Speed Limits](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5492420/)
+
+[The formula for curvature](https://www.ima.umn.edu/~miller/1372curvature.pdf)
+
+[Interaction aware trajectory planning for merge scenarios in congested traffic situations](http://ieeexplore.ieee.org/document/7795596/)
+
+[Udacity Github Blank Project](https://github.com/udacity/CarND-Path-Planning-Project)
+
+[Reference Project 1](https://github.com/PhilippeW83440/CarND-Path-Planning-Project)
 
 
-### Goals
+
+## Goals
 In this project your goal is to safely navigate around a virtual highway with other traffic that is driving +-10 MPH of the 50 MPH speed limit. You will be provided the car's localization and sensor fusion data, there is also a sparse map list of waypoints around the highway. The car should try to go as close as possible to the 50 MPH speed limit, which means passing slower traffic when possible, note that other cars will try to change lanes too. The car should avoid hitting other cars at all cost as well as driving inside of the marked road lanes at all times, unless going from one lane to another. The car should be able to make one complete loop around the 6946m highway. Since the car is trying to go 50 MPH, it should take a little over 5 minutes to complete 1 loop. Also the car should not experience total acceleration over 10 m/s^2 and jerk that is greater than 10 m/s^3.
 
 #### The map of the highway is in data/highway_map.txt
@@ -332,38 +368,4 @@ To run the simulator on Mac/Linux, first make the binary file executable with th
 sudo chmod u+x {simulator_file_name}
 ```
 
-## References
 
-[Intention-Net: Integrating Planning and Deep Learning for Goal-Directed Autonomous Navigation](https://arxiv.org/abs/1710.05627)
-
-[Learning to Navigate in Cities Without a Map](https://arxiv.org/abs/1804.00168)
-
-[A Look at Motion Planning for Autonomous Vehicles at an Intersection](https://arxiv.org/abs/1806.07834)
-
-[DeepTraffic: Crowdsourced Hyperparameter Tuning of Deep Reinforcement Learning Systems for Multi-Agent Dense Traffic Navigation](https://arxiv.org/abs/1801.02805)
-
-[Intel proposes a mathematical formula for self-driving car safety](https://www.engadget.com/2017-10-17-intel-mobileye-autonomous-vehicle-safety.html)
-
-[On a Formal Model of Safe and Scalable Self-driving Cars](https://arxiv.org/pdf/1708.06374.pdf)
-
-[A minimum-jerk Trajectory](http://courses.shadmehrlab.org/Shortcourse/minimumjerk.pdf) [MPLAB](http://mplab.ucsd.edu/tutorials/minimumJerk.pdf)
-
-[Optimal Trajectory Generation for Dynamic Street Scenarios in a Frenet Frame](https://pdfs.semanticscholar.org/0e4c/282471fda509e8ec3edd555e32759fedf4d7.pdf)
-
-[Sampling Based Motion Planning for Heavy Duty Autonomous Vehicles](http://liu.diva-portal.org/smash/get/diva2:1049189/FULLTEXT01.pdf)
-
-[Towards Fully Autonomous Driving: Systems and Algorithms](https://www.cs.cmu.edu/~zkolter/pubs/levinson-iv2011.pdf)
-
-[Path Planning for Highly Automated Vehicles](http://publications.lib.chalmers.se/records/fulltext/182538/182538.pdf)
-
-[Vehicle Trajectory Prediction based on Motion Model and Maneuver Recognition](https://hal.inria.fr/hal-00881100/PDF/IROS13_PIN_161867_.pdf)
-
-[Dynamic Speed Adaptation for Path Tracking Based on Curvature Information and Speed Limits](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5492420/)
-
-[The formula for curvature](https://www.ima.umn.edu/~miller/1372curvature.pdf)
-
-[Interaction aware trajectory planning for merge scenarios in congested traffic situations](http://ieeexplore.ieee.org/document/7795596/)
-
-[Udacity Github Blank Project](https://github.com/udacity/CarND-Path-Planning-Project)
-
-[Reference Project 1](https://github.com/PhilippeW83440/CarND-Path-Planning-Project)
