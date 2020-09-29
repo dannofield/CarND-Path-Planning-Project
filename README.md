@@ -104,7 +104,7 @@ if(check_other_car_d < (2+4*lane+2) && check_other_car_d > (2+4*lane-2))
 }
 ```
 
-We are also checking all the time for cars on other. So we always know if the left lane or the right lane are available at all time. 
+We are also checking all the time for cars on other lanes. So we always know if the left lane or the right lane are available at all time. 
 
 We check for cars 10 mts ahead of us and 30 mts back to consider the next lane available or not in case we want to change our lane
 
@@ -238,6 +238,16 @@ Once the s(t) and d(t) have been found for the trajectory, we convert back to (x
 Also we have predictions from sensor fusion informations that are in (x, y) coordinates: so ultimately we check collision avoidance and safety distances in (x, y) coordinates.
 
 This approach has its disvantages, specially during a cold start, we can end up with useless wheels movements. This is a subject for further improvement so this method was not used. 
+
+# Reflection
+
+I really loved the way this module was addressed. The behavior planner gets fed by the Sensor fusion module that has to detect obstacles correctly, either moving or static through RADA & LIDAR; computer vision, serialization maps, localization data through GPS, and other sensors like gyroscope, accelerometer, speed encoder disks.
+
+All this data feeds the behavior planner so it can suggest a maneuver that is feasible, safe, legal efficient.
+
+In practice, a self-driving car has multiples behavior planners, to be used on highways, parking lots,  intersections, etc.
+
+We didn't implement a Jerk Minimizing Trajectory, nor a motion planner like an A* or a Hybrid A* algorithm but it would be interesting to integrate everything in this project. 
 
 ## References
 
