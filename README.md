@@ -116,6 +116,14 @@ sudo chmod u+x {simulator_file_name}
 
 [Path Planning for Highly Automated Vehicles](http://publications.lib.chalmers.se/records/fulltext/182538/182538.pdf)
 
+[Vehicle Trajectory Prediction based on Motion Model and Maneuver Recognition](https://hal.inria.fr/hal-00881100/PDF/IROS13_PIN_161867_.pdf)
+
+[Dynamic Speed Adaptation for Path Tracking Based on Curvature Information and Speed Limits](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5492420/)
+
+[The formula for curvature](https://www.ima.umn.edu/~miller/1372curvature.pdf)
+
+[Interaction aware trajectory planning for merge scenarios in congested traffic situations](http://ieeexplore.ieee.org/document/7795596/)
+
 [Udacity Github Blank Project](https://github.com/udacity/CarND-Path-Planning-Project)
 
 [Reference Project 1](https://github.com/PhilippeW83440/CarND-Path-Planning-Project)
