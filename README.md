@@ -52,7 +52,7 @@ If you would like to be in the middle lane, add the waypoint's coordinates to th
 ## SENSOR FUSION
 
 
-The sensor function layer gives us the positions and velocitiy of the car that are near us.
+
 ```Cpp
 // Sensor Fusion Data is a list of all other cars on the same side 
 //   of the road.
@@ -81,14 +81,9 @@ for(int i = 0; i < sensor_fusion.size(); i++)
   :
 }
 ```
+And we can know if we have cars in front of us, 30 mts ahead. We can use this information to start breaking and to prepare to change lanes if the adjacent lines are available.
 
- what is happening on our lane and also on the lanes adjacents to us.
-
-The d vector has a magnitude of 1 and points perpendicular to the road in the direction of the right-hand side of the road. The d vector can be used to calculate lane positions. For example, if you want to be in the left lane at some waypoint just add the waypoint's (x,y) coordinates with the d vector multiplied by 2. Since the lane is 4 m wide, the middle of the left lane (the lane closest to the double-yellow dividing line) is 2 m from the waypoint. 
-If you would like to be in the middle lane, add the waypoint's coordinates to the d vector multiplied by 6 = (2+4), since the center of the middle lane is 4 m from the center of the left lane, which is itself 2 m from the double-yellow dividing line and the waypoints.
-
-
-![alt text][image2]
+![alt text][image7]
 
 ```Cpp
 
@@ -108,6 +103,12 @@ if(check_other_car_d < (2+4*lane+2) && check_other_car_d > (2+4*lane-2))
     }
 }
 ```
+
+We are also checking all the time for cars on other. So we allways know if the left lane or the right lane are available at all time. 
+
+We check for cars 10 mts ahead of us and 30 mts back to consider the next lane available or not in case we want to change our lane
+
+![alt text][image4]
 
 ### Goals
 In this project your goal is to safely navigate around a virtual highway with other traffic that is driving +-10 MPH of the 50 MPH speed limit. You will be provided the car's localization and sensor fusion data, there is also a sparse map list of waypoints around the highway. The car should try to go as close as possible to the 50 MPH speed limit, which means passing slower traffic when possible, note that other cars will try to change lanes too. The car should avoid hitting other cars at all cost as well as driving inside of the marked road lanes at all times, unless going from one lane to another. The car should be able to make one complete loop around the 6946m highway. Since the car is trying to go 50 MPH, it should take a little over 5 minutes to complete 1 loop. Also the car should not experience total acceleration over 10 m/s^2 and jerk that is greater than 10 m/s^3.
