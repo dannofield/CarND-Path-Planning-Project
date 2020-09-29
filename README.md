@@ -106,6 +106,16 @@ sudo chmod u+x {simulator_file_name}
 
 [On a Formal Model of Safe and Scalable Self-driving Cars](https://arxiv.org/pdf/1708.06374.pdf)
 
-[A minimum-jerk Trajectory](http://courses.shadmehrlab.org/Shortcourse/minimumjerk.pdf)
+[A minimum-jerk Trajectory](http://courses.shadmehrlab.org/Shortcourse/minimumjerk.pdf) [MPLAB](http://mplab.ucsd.edu/tutorials/minimumJerk.pdf)
+
+[Optimal Trajectory Generation for Dynamic Street Scenarios in a Frenet Frame](https://pdfs.semanticscholar.org/0e4c/282471fda509e8ec3edd555e32759fedf4d7.pdf)
+
+[Sampling Based Motion Planning for Heavy Duty Autonomous Vehicles](http://liu.diva-portal.org/smash/get/diva2:1049189/FULLTEXT01.pdf)
+
+[Towards Fully Autonomous Driving: Systems and Algorithms](https://www.cs.cmu.edu/~zkolter/pubs/levinson-iv2011.pdf)
+
+[Path Planning for Highly Automated Vehicles](http://publications.lib.chalmers.se/records/fulltext/182538/182538.pdf)
 
 [Udacity Github Blank Project](https://github.com/udacity/CarND-Path-Planning-Project)
+
+[Reference Project 1](https://github.com/PhilippeW83440/CarND-Path-Planning-Project)
