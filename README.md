@@ -110,6 +110,47 @@ We check for cars 10 mts ahead of us and 30 mts back to consider the next lane a
 
 ![alt text][image4]
 
+```Cpp
+bool left_lane_is_empty = true;
+bool right_lane_is_empty = true;
+
+/*The d vector has a magnitude of 1 and points perpendicular to the road in the direction of the right-hand side of the road.
+Each lane is 4 m wide and our car should only ever be in one of the 3 lanes on the right-hand side.
+Lane 0: High speed - Lane 1: meddle - Lane 2: Low speed
+*/  
+/*Check left lane allways*/
+if((lane > 0) 
+      /*is the other car in between of the next left lane left boundary*/
+      && check_other_car_d > (/*left lane = */(lane - 1)*/*lane width = */4)
+      /*...and the next left lane right boundary*/
+      && check_other_car_d < (/*left lane = */(lane - 1)*/*lane width = */4) + 4)
+{
+  //check s position in between +10mts and -30mts of our car
+  if((check_other_car_s < (car_s + 10/*mts*/)) && (check_other_car_s > (car_s - 30/*mts*/)))
+  {
+    //Another car is in this lane
+    left_lane_is_empty = false;
+  }
+
+}
+/*Check right lane allways*/
+if((lane < 2) 
+      /*is the other car in between of the next right lane left boundary*/
+      && check_other_car_d > (/*right lane = */(lane + 1)*/*lane width = */4)
+      /*...and the next right lane right boundary*/
+      && check_other_car_d < (/*right lane = */(lane + 1)*/*lane width = */4) + 4)
+{
+  //check s position in between +10mts and -30mts of our car
+  if((check_other_car_s < (car_s + 10/*mts*/)) && (check_other_car_s > (car_s - 30/*mts*/)))
+  {
+    //Another car is in this lane
+    right_lane_is_empty = false;
+  }
+
+}
+
+```
+
 ### Goals
 In this project your goal is to safely navigate around a virtual highway with other traffic that is driving +-10 MPH of the 50 MPH speed limit. You will be provided the car's localization and sensor fusion data, there is also a sparse map list of waypoints around the highway. The car should try to go as close as possible to the 50 MPH speed limit, which means passing slower traffic when possible, note that other cars will try to change lanes too. The car should avoid hitting other cars at all cost as well as driving inside of the marked road lanes at all times, unless going from one lane to another. The car should be able to make one complete loop around the 6946m highway. Since the car is trying to go 50 MPH, it should take a little over 5 minutes to complete 1 loop. Also the car should not experience total acceleration over 10 m/s^2 and jerk that is greater than 10 m/s^3.
 
