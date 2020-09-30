@@ -285,7 +285,18 @@ We didn't implement a Jerk Minimizing Trajectory, nor a motion planner like an A
 
 [Reference Project 1](https://github.com/PhilippeW83440/CarND-Path-Planning-Project)
 
+#### The following resources can be of great help for further research:
+Introduction to Robotics #4: http://correll.cs.colorado.edu/?p=965
+Path-Planning-The path planning problem in depth : https://www.cs.cmu.edu/afs/cs/project/jair/pub/volume9/mazer98a-html/node2.html 
+A discussion on What is the difference between path planning and motion planning? https://robotics.stackexchange.com/questions/8302/what-is-the-difference-between-path-planning-and-motion-planning
+Introduction to robot motion: Robot Motion Planning: http://ais.informatik.uni-freiburg.de/teaching/ss11/robotics/slides/18-robot-motion-planning.pdf 
+Introduction to robot motion: Path Planning and Collision Avoidance: http://ais.informatik.uni-freiburg.de/teaching/ss10/robotics/slides/16-pathplanning.pdf
 
+[Path Planning for Collision Avoidance Maneuver](https://www.researchgate.net/publication/267596342_Path_Planning_for_Collision_Avoidance_Maneuver)
+
+[Optimal Trajectory Planning for Glass-Handing Robot Based on Execution Time Acceleration and Jerk](https://www.hindawi.com/journals/jr/2016/9329131/)
+
+[This discussion on StackExchange can be of interest Which trajectory planning algorithm for minimizing jerk](https://robotics.stackexchange.com/questions/8555/which-trajectory-planning-algorithm-for-minimizing-jerk)
 
 ## Goals
 In this project your goal is to safely navigate around a virtual highway with other traffic that is driving +-10 MPH of the 50 MPH speed limit. You will be provided the car's localization and sensor fusion data, there is also a sparse map list of waypoints around the highway. The car should try to go as close as possible to the 50 MPH speed limit, which means passing slower traffic when possible, note that other cars will try to change lanes too. The car should avoid hitting other cars at all cost as well as driving inside of the marked road lanes at all times, unless going from one lane to another. The car should be able to make one complete loop around the 6946m highway. Since the car is trying to go 50 MPH, it should take a little over 5 minutes to complete 1 loop. Also the car should not experience total acceleration over 10 m/s^2 and jerk that is greater than 10 m/s^3.
